@@ -1,0 +1,57 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="login">
+    <h1>Registrate</h1>
+
+    <div class="card w-50">
+        <div class="card-body">
+            <form asp-action="SignIn">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="ImagenUrl" />
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="card mt-2">
+                        <div class="card-footer">
+                            <div class="mb-3">
+                                <label class="form-label">Imagen de Usuario</label>
+                                <input type="file" id="ImageUploader" class="form-control" />
+                                <span asp-validation-for="ImagenUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">Registrame</button>
+                <a class="btn btn-success" asp-action="Login">Iniciar Sesion</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/UploadImage.js" asp-append-version="true"></script>
+}

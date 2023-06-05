@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Usuario> SignInManager
+
+@model IEnumerable<ListadoLibros>
+
+@{
+    ViewData["Title"] = "Listado de Libros";
+}
+
+<h1>Listado de Libros</h1>
+@if(User.IsInRole("Administrador")){
+    <a asp-action="Crear" class="btn btn-primary mb-3">Crear Libro</a>
+}
+
+<table class="table">
+     <thead>
+        <tr>
+            <th>Accion</th>
+            <th>Libro</th>
+            <th>Autor</th>
+            <th>Editorial</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var libro in Model)
+        {
+            <tr>
+                <td>
+                    @if (User.IsInRole("Administrador")){
+                        <a class="btn btn-primary" asp-action="Actualizar" asp-route-id="@libro.IdLibro">Editar</a>
+                    }
+                    <a class="btn btn-info" asp-action="Detalles" asp-route-idLibro="@libro.IdLibro">Detalles</a>
+                    @if(SignInManager.IsSignedIn(User)){
+                        <a class="btn btn-warning" asp-controller="Reviews" asp-action="Crear" asp-route-idLibro="@libro.IdLibro">Crear Opinion</a>
+                    }
+                </td> 
+
+                <td>
+                    @libro.NombreLibro
+                </td>
+
+                <td>
+                    @libro.NombreAutor
+                </td>
+
+                <td>
+                    @libro.NombreEditorial
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

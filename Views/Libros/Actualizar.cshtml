@@ -1,0 +1,50 @@
+﻿@model LibroCreacionViewModel
+
+@{
+    ViewData["Title"] = "Actualizar Libro";
+}
+
+<form asp-action="Actualizar">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="IdLibro" />
+    <input type="hidden" asp-for="ImagenUrl" />
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaPublicacion"class="form-label"></label>
+        <input asp-for="FechaPublicacion" class="form-control" />
+        <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdAutor" class="form-label"></label>
+        <select asp-for="IdAutor" asp-items="Model.Autores" class="form-control"></select>
+        <span asp-validation-for="IdAutor" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IdEditorial" class="form-label"></label>
+        <select asp-for="IdEditorial" asp-items="Model.Editoriales" class="form-control"></select>
+        <span asp-validation-for="IdEditorial" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/ResizeTextArea.js" asp-append-version="true"></script>
+}

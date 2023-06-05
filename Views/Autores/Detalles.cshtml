@@ -1,0 +1,26 @@
+﻿@using AdministracionLibros.Helpers;
+@model Autor
+
+@{
+    ViewData["Title"] = "Detalles Autor";
+
+    int EdadActual(string fecha){
+        return Math.Abs(DateTime.Parse(fecha).Year - DateTime.Today.Year);
+    }
+}
+
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-xl-3 me-5">
+            <img src="@Model.ImagenUrl" class="mt-3" width="300" height="500" alt="Imagen de autor">
+        </div>
+
+        <div class="col-8">
+            <h1>@Model.Nombre</h1>
+            <h5>Fecha Nacimiento: @FechasConvertHelper.FormatoFechaDetalles(Model.FechaNacimiento)</h5>
+            <h5>@(Model.FechaMuerte is not null ? $"Fecha Muerte: {@FechasConvertHelper.FormatoFechaDetalles(Model.FechaMuerte)}" : $"Edad Actual: {@EdadActual(FechasConvertHelper.FormatoFechaDetalles(Model.FechaNacimiento))}")</h5>
+
+            <p class="mt-3">@Model.Biografia</p>
+        </div>
+    </div>
+</div>

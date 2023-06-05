@@ -1,0 +1,36 @@
+﻿@model ReviewViewModel
+
+@{
+    ViewData["Title"] = "Crear Review";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.Libro.ImagenUrl" width="400" class="img-thumbnail" alt="Imagen">
+        </div>
+
+        <div class="col-8">
+            <h1>@Model.Libro.Nombre</h1>
+
+            <form asp-action="Crear">
+                <input type="hidden" asp-for="IdLibro" />
+
+                <div class="mb-3">
+                    <label asp-for="Opinion" class="form-label"></label>
+                    <textarea id="opinion" asp-for="Opinion" class="form-control"></textarea>
+                    <span asp-validation-for="Opinion" class="text-danger"></span>
+                </div>
+
+                <button class="btn btn-primary">Crear Opinion</button>
+                <a class="btn btn-secondary" asp-controller="Libros" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/ResizeTextArea.js" asp-append-version="true"></script>
+}

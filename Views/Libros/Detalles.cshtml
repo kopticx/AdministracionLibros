@@ -1,0 +1,40 @@
+﻿@using AdministracionLibros.Helpers;
+@model LibroDetallesViewModel
+
+@{
+    ViewData["Title"] = "Detalles de Libro";
+}
+
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-2">
+            <img src="@Model.ImagenUrl" width="200" class="img-thumbnail" alt="Imagen">
+        </div>
+
+        <div class="col-8">
+            <h1>@Model.Nombre</h1>
+            <h5>@Model.Autor.Nombre</h5>
+            <h5>Publicado: @FechasConvertHelper.FormatoFechaDetalles(Model.FechaPublicacion)</h5>
+            <h5 class="mb-3">Editorial: @Model.Editorial.Nombre</h5>
+
+            <p>@Model.Descripcion</p>
+        </div>
+    </div>
+</div>
+
+<h4 class="mb-4">Opiniones de los lectores:</h4>
+
+@if(Model.Reviews.Count() > 0){
+    <div class="container">
+        @foreach (var review in Model.Reviews)
+        {
+            <img src="@review.UserImage" class="rounded mb-3" width="50"/>
+            <h5 style="display:inline-block; vertical-align:super">@review.UserName:   </h5>
+            <p>@review.Opinion</p>
+            <p class="text-end text-black-50 mb-2">@review.FechaReview.ToString("dd-MMMM-yyyy")</p>
+        }
+    </div>
+}
+else{
+    <h5>No hay opiniones todavia</h5>
+}

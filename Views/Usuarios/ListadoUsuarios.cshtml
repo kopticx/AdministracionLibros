@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Usuario>
+
+@{
+    ViewData["Title"] = "Listado Usuarios";
+}
+
+<h1>Listado de Usuarios</h1>
+<h5 class="mb-3">Aqui los admistradores pueden dar o quitar el rol de administrador a los usuarios</h5>
+
+<table class="table table-hover">
+     <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Usuario</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="HacerAdmin">Hacer Admin</a>
+                    <a class="btn btn-danger" asp-action="QuitarAdmin">Quitar Admin</a>
+                </td>
+
+                <td>
+                    @usuario.UserName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,68 @@
+﻿@model Autor
+
+@{
+    ViewData["Title"] = "Crear Autor";
+}
+
+<h1>Crear Autor</h1>
+<h5>Aqui podras crear un autor para poder crear un libro</h5>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-2">
+                <img src="@Model.ImagenUrl" id="ImagePreview" class="card-img-top"/>
+
+                <div class="card-footer">
+                    <div class="mb-3">
+                        <label class="form-label">Imagen del Autor</label>
+                        <input type="file" id="ImageUploader" class="form-control" />
+                        <span asp-validation-for="ImagenUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <form asp-action="Crear">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="ImagenUrl" />
+
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FechaNacimiento" class="form-label"></label>
+                    <input type="date" asp-for="FechaNacimiento" class="form-control" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FechaMuerte" class="form-label"></label>
+                    <input type="date" asp-for="FechaMuerte" class="form-control" />
+                    <span asp-validation-for="FechaMuerte" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Biografia" class="form-label"></label>
+                    <textarea asp-for="Biografia" class="form-control"></textarea>
+                    <span asp-validation-for="Biografia" class="text-danger"></span>
+                </div>
+
+                <button class="btn btn-primary">Crear</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/ResizeTextArea.js" asp-append-version="true"></script>
+    <script src="~/js/UploadImage.js" asp-append-version="true"></script>
+}
